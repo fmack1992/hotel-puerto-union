@@ -1,0 +1,550 @@
+/********** Custom Properties ********/
+:root {
+ --first-color: #2c2a2a;
+ --first-alpha-color: rgba(44, 42, 42, 0.75);
+ --second-color: #F5F4EB;
+ --second-alpha-color: rgba(245, 244, 235, 0.75);
+ --third-color: #ED5434;;
+ --white-color: #fff;
+ --gray-light-color: #f3f3f3;
+ --gray-color: #ccc;
+ --gray-dark-color: #666;
+ --black-color: #000;
+ --title-color: #333;
+ --text-color: #222;
+ --white-alpha-color: rgba(255, 255, 255, 0.5);
+ --black-alpha-color: rgba(0, 0, 0, 0.2);
+ --font: "Raleway", sans-serif;
+ --max-width: 1200px;
+ --header-height: 4rem;
+}
+
+
+/********** Reset ********/
+html {
+ box-sizing: border-box;
+ font-family: var(--font);
+ font-size: 16px;
+ scroll-behavior: smooth; /*Hace una pequeña transición al pasar a otra pestaña*/
+}
+
+*,
+*::after,
+*::before {
+ box-sizing: inherit;
+}
+
+body {
+ margin: 0;
+ overflow-x: hidden;
+ color: var(--text-color);
+ font-family: var(--font);
+}
+
+a {
+ color: var(--link-color);
+ transition: all 0.5s ease-out;
+}
+
+a:hover {
+ opacity: 0.75;
+}
+
+h1 {
+ margin: 0;
+ font-size: 2rem;
+}
+
+h2 {
+ margin: 0;
+ font-size: 1.8rem;
+}
+
+h3 {
+ margin-top: 5%;
+ font-size: 1.5rem;
+}
+
+h4 {
+ margin: 0;
+ font-size: 1rem;
+}
+
+h5 {
+ margin: 0;
+ font-size: 0.85rem;
+}
+
+h6 {
+ margin: 0;
+ font-size: 0.7rem;
+}
+
+img {
+ max-width: 100%;
+ height: auto;
+}
+
+p {
+ line-height: 1.6;
+}
+
+
+
+/********** Components ********/
+/******** Hero Image ******/
+.hero-image {
+ background-image: var(--hero-image); /*Llamo a imagen declarada en article, style de HTML*/
+ background-repeat: no-repeat;
+ background-size: cover; /*Se adapta a la altura de manera proporcional del contenedor*/
+ background-position: center;
+ background-attachment: var(--hero-attachment); /*declarada en article, style de HTML. Fixed hace que quede fija y no scrollee*/
+}
+
+.hero-image-content {
+ display: flex;
+ width: 100%;
+ justify-content: center;
+}
+
+.hijo-hero-image-content {
+ width: 100%;
+ height: 100%;
+ padding: 2%;
+ position: relative;
+ background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-image-opacity { /*Opacidad modal*/
+ min-height: 100vh; 
+ display: flex; 
+ align-items: center; 
+ text-align: center;
+}
+
+.hero-image-title {
+ font-family: 'Fjalla One', sans-serif;
+ font-size: 13vw; 
+ color: var(--hero-text-color); 
+ display: block;
+ letter-spacing: .2rem;
+ text-transform: uppercase;
+}
+  
+
+/******** Contact Form ******/
+.contact-form {
+ margin: 2rem auto;
+ padding: 1rem;
+ max-width: 800px;
+}
+
+.contact-form > *{ /* Aplico a todos los hijos*/
+ padding: 0.6rem;
+ margin: 1rem auto;
+ display: block;
+ width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+ font-size: .85rem;
+ font-family: var(--font);
+}
+
+.contact-form textarea {
+ border: thin solid var(--gray-dark-color);
+ resize: none; /* Es para que no se pueda cambiar el tamaño del textarea*/
+}
+
+.contact-form input[type="submit"] {
+ margin-top: 0;
+ cursor: pointer;
+ transition: all .5s ease-out;
+ display: block;
+}
+
+.contact-form input[type="submit"]:hover {
+ opacity: 75%;
+}
+
+.contact-form *::placeholder {
+ color: var(--gray-dark-color);
+}
+
+.contact-form-response {
+ padding: 1rem;
+ text-align: center;
+ background-color: var(--white-color);
+}
+
+.contact-form-response svg {
+ margin-top: 2rem;
+ width: 4rem;
+ height: 4rem;
+ fill: var(--first-color);
+}
+
+.loader{
+ text-align: center;
+}
+
+.modal#gracias:target {
+ opacity: 1;
+ pointer-events: auto;
+}
+
+
+/******** MODAL ******/
+.modal {
+ position: fixed;
+ z-index: 999;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: var(--black-alpha-color);
+ opacity: 0;
+ pointer-events: none;
+ transition: all 1s ;
+}
+
+.modal-content {
+ position: relative;
+}
+
+.modal-close {
+ position: absolute;
+ top: 1rem;
+ right: 1rem;
+}
+
+.modal-close svg {
+ width: 3rem;
+ height: 3rem;
+ fill: var(--first-color);
+}
+
+.modal[id|=trabajo]:target { /* Los estilos se aplican cuando el target de la pagina esté en este ID. Al utilizar el | le estoy diciendo que si empieza con "trabajo" aplique esto*/
+ opacity: 1;
+ pointer-events: auto;
+}
+
+
+/********** Menu ********/
+.animation-btn {
+ animation: backInLeft;
+ animation-duration: 1.8s;
+}
+
+.menu {
+ position: fixed;
+ left: 0; /*De esta manera, posicionamos el menu a la izquierda*/
+ bottom: var(--header-height); /*Al ponerle bottom con la variable header height, hacemos que se posicione justo arriba de la cabecera inferior*/
+ width: 100%; /*recordemos que con fixed pierde propiedades de ancho y alto*/
+ display: flex; /*lo pasamos a forma vertical*/
+ flex-direction: column; /*lo pasamos a forma vertical*/
+ background-color: var(--second-color);
+ opacity: 0; /*lo voy a activar con javascript, pasando la opacidad a 1*/
+ pointer-events: none; /*quitamos interactividad*/
+ transition: opacity 0.5s ease;
+}
+
+.menu a {
+ padding: 1rem;
+ font-size: 1.3rem;
+ font-weight: bold;
+ text-align: center;
+ text-decoration: none;
+ color: var(--first-color);
+}
+
+.menu a:hover {
+ color:var(--white-color);
+ background-color: var(--third-color);
+}
+
+.menu-btn {
+ border: 0;
+ cursor: pointer;
+ background-color: var(--second-color);
+}
+
+.menu-btn svg {
+ fill: var(--gray-dark-color); 
+}
+
+.menu.is-active { /*Esto lo voy a activar con javascript*/
+ opacity: 1;
+ pointer-events: auto;
+}
+
+
+
+/********** Utilities ********/
+.btn {
+ border-radius: .5rem;
+ padding: .8rem;
+ display: inline-block;
+ width: 200px;
+ font-weight: bold;
+ text-align: center;
+ text-decoration: none;
+ color: var(--white-color);
+ background-color: #e3a827;
+ margin-top: .3rem;
+ letter-spacing: .1rem;
+}
+
+.container {
+ margin-left: auto;
+ margin-right: auto;
+ max-width: var(--max-width);
+}
+
+.contenedor-iconos {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ }
+
+.iconos-rooms {
+ list-style: none;
+}
+
+.none {
+ display: none;
+}
+
+.section {
+ padding: 2rem 1rem;
+}
+
+.section-title {
+ border-top: thin solid var(--first-color);
+ border-bottom: thin solid var(--first-color);
+ margin: 2rem auto;
+ padding: .5rem 1rem;
+ width: 250px;
+ text-align: center;
+ color: var(--title-color);
+}
+
+.service-card {
+ padding: 0rem;
+}
+
+
+
+/********** Site Styles ********/
+.container-maps {
+ max-width: 1200px;
+ height: 200px;
+ border: 1px solid #2c2a2a;
+ margin: 5rem auto;
+}
+
+.footer {
+ margin-bottom: var(--header-height);
+ padding: .5rem;
+ color: var(--white-color);
+ background-color: var(--third-color);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.footer small {
+ margin-right: .6rem;
+ font-weight: 600;
+}
+
+.footer small a {
+ padding: .4rem;
+ text-decoration: none;
+}
+
+.header {
+ position: fixed;
+ left: 0; /*Con left y bottom 0, alineo a la parte de abajo (es para mobile)*/
+ bottom: 0;
+ z-index: 999; /*En cuestion de profundidad, queremos que la cabecera siempre sea lo que se vea*/
+ padding: 1rem;
+ width: 100%; /* Tanto width como height se definen porque estamos trabajando con un elemento posicionado de manera fija, lo cual hace que pierda sus propiedades de ancho y alto*/
+ height: calc(var(--header-height)); 
+ background-color: var(--second-color);
+ }
+
+.header > .container {/* > esto es el selector de hijo directo del header*/ 
+ display: flex;
+ justify-content: space-between;
+ align-items: center; /*Alineacion en vertical con respecto al centro, para el texto que dice jon mircha y el boton de hamburguesa*/
+}
+
+.logo a {
+ color: var(--first-color);
+ font-weight: bold;
+ font-size: 2.2rem; 
+ text-decoration: none;
+ font-family: 'Kaushan Script', cursive;
+}
+
+.logo a:hover {
+ color: var(--third-color);
+ background-color: transparent;
+}
+
+.maps {
+ width: 100%;
+ height: 100%;
+}
+
+
+
+/*********** VISTA TABLET **************/
+@media screen and (min-width:576px) and (max-width: 1024px){
+ .contenedor-iconos {
+   margin-left: 40%;
+  }
+ 
+ .container-img-rooms {
+  text-align: center;
+ }
+ 
+ .container-maps {
+  display: block;
+  width: 60%;
+ }
+ 
+  .hero-image-title {
+   font-size: 8vw;
+  }
+ 
+ .service-card {
+  text-align: center;
+  }
+ }
+
+
+
+ /*********** VISTA ESCRITORIO **************/
+ @media screen and (min-width:1024px) {
+  .animation-btn {
+   animation: backInLeft;
+   animation-duration: 6s;
+  }
+  
+  .container-maps {
+   display: block;
+   width: 60%;
+   justify-content: center;
+  }
+
+  .contenedor-iconos {
+   margin-left: 0;
+  }
+  
+  .footer {
+   margin-bottom: 0;
+  }
+ 
+  .grid-rooms {
+   display: grid;
+   grid-template-columns: repeat(2,50%); 
+   justify-content: center;
+   align-content: center;
+   padding: 5%;
+  }
+  
+  .grid-rooms2-color {
+   background-color: #f8f9fa;
+  }
+
+  .header {
+   position: sticky; /*Se va a comportar como elemento fijo cuando llegue a la altura que determinemos. A diferencia del fixed, no tapa el contenido*/
+   top: 0; /*Cuendo toque el margen top se va a volver fijo*/
+   padding: 0.5rem;
+   height: calc(var(--header-height) - .5rem);
+  }
+
+  .hero-image-title {
+   font-family: 'Fjalla One', sans-serif;
+   font-size: 4vw; 
+   color: var(--hero-text-color); /*Declarada en h2, style de HTML. Cambia color texto*/
+   white-space: nowrap;
+   border-right: 1px solid;
+   width: 48ch;
+   letter-spacing: .2rem;
+   animation: typing 6s steps(48), blink .5s  step-end alternate;
+   overflow:hidden;
+  }
+    
+    @keyFrames typing {
+    
+    from { width: 0}
+    }
+    
+    @keyFrames blink {
+     50% { border-color: transparent}
+    }
+ 
+  .menu {
+   position: static;
+   width: auto;
+   flex-direction: row;
+   opacity: 1;
+   pointer-events: auto;
+  }
+  
+  .menu a {
+   padding: 0 1rem;
+  }
+ 
+  .menu a:last-child {
+   padding-right: 0;
+  }
+ 
+  .menu a:hover {
+   color: var(--third-color);
+   background-color: transparent;
+  }
+  
+  .menu-btn {
+   display: none;
+  }
+ 
+  p {
+   line-height: 1;
+  }
+
+ .room-column-1 {
+  grid-column-start: 2;
+ }
+
+ .room-column-2 {
+  grid-column-start: 2;
+ }
+
+ .service-card {
+  margin-top: 15px;
+  margin-left: 20%;
+ }
+
+ .service-card h3 {
+  margin-left: 10%;
+  margin-top: 0;
+ }
+
+ .service-column-1 {
+  grid-row-start: 1;
+ }
+
+ .service-column-2 {
+  grid-row-start: 1;
+ }
+}
+
+ 
