@@ -254,7 +254,7 @@ p {
 }
 
 .menu a {
- padding: 1rem;
+ padding: 2rem;
  font-size: 1.3rem;
  font-weight: bold;
  text-align: center;
@@ -374,7 +374,7 @@ p {
  z-index: 999; /*En cuestion de profundidad, queremos que la cabecera siempre sea lo que se vea*/
  padding: 1rem;
  width: 100%; /* Tanto width como height se definen porque estamos trabajando con un elemento posicionado de manera fija, lo cual hace que pierda sus propiedades de ancho y alto*/
- height: calc(var(--header-height)); 
+ height: var(--header-height); 
  background-color: var(--second-color);
  }
 
