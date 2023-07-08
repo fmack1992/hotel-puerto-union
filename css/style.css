@@ -83,6 +83,7 @@ h6 {
 img {
  max-width: 100%;
  height: auto;
+ border: 4px solid var(--second-color)
 }
 
 p {
@@ -243,7 +244,7 @@ p {
 .menu {
  position: fixed;
  left: 0; /*De esta manera, posicionamos el menu a la izquierda*/
- bottom: var(--header-height); /*Al ponerle bottom con la variable header height, hacemos que se posicione justo arriba de la cabecera inferior*/
+ bottom: 6rem; /*Al ponerle bottom con la variable header height, hacemos que se posicione justo arriba de la cabecera inferior*/
  width: 100%; /*recordemos que con fixed pierde propiedades de ancho y alto*/
  display: flex; /*lo pasamos a forma vertical*/
  flex-direction: column; /*lo pasamos a forma vertical*/
@@ -254,8 +255,8 @@ p {
 }
 
 .menu a {
- padding: 2rem;
- font-size: 1.6rem;
+ padding: 3rem;
+ font-size: 3rem;
  font-weight: bold;
  text-align: center;
  text-decoration: none;
@@ -286,8 +287,8 @@ p {
 
 /********** Utilities ********/
 .btn {
- border-radius: .5rem;
- padding: .8rem;
+ border-radius: 0.5rem;
+ padding: 0.8rem;
  display: inline-block;
  width: 200px;
  font-weight: bold;
@@ -297,6 +298,8 @@ p {
  background-color: #e3a827;
  margin-top: .3rem;
  letter-spacing: .1rem;
+ font-size: 1.6rem;
+ font-family: 'Fjalla One', sans-serif;
 }
 
 .container {
@@ -348,13 +351,14 @@ p {
 }
 
 .footer {
- margin-bottom: var(--header-height);
- padding: .5rem;
+ margin-bottom: 7rem;
+ padding: 1rem;
  color: var(--white-color);
  background-color: var(--third-color);
  display: flex;
  align-items: center;
  justify-content: center;
+ font-size: 1.3rem;
 }
 
 .footer small {
@@ -372,9 +376,9 @@ p {
  left: 0; /*Con left y bottom 0, alineo a la parte de abajo (es para mobile)*/
  bottom: 0;
  z-index: 999; /*En cuestion de profundidad, queremos que la cabecera siempre sea lo que se vea*/
- padding: 0.5rem;
+ padding: 2rem;
  width: 100%; /* Tanto width como height se definen porque estamos trabajando con un elemento posicionado de manera fija, lo cual hace que pierda sus propiedades de ancho y alto*/
- height: var(--header-height); 
+ height: 8rem; 
  background-color: var(--second-color);
  }
 
@@ -387,7 +391,7 @@ p {
 .logo a {
  color: var(--first-color);
  font-weight: bold;
- font-size: 2.2rem; 
+ font-size: 3rem; 
  text-decoration: none;
  font-family: 'Kaushan Script', cursive;
 }
@@ -449,6 +453,7 @@ p {
   
   .footer {
    margin-bottom: 0;
+   padding: 0.5rem;
   }
  
   .grid-rooms {
@@ -491,15 +496,21 @@ p {
      50% { border-color: transparent}
     }
  
+  .logo a {
+  font-size: 2.2rem; 
+  }
+  
   .menu {
    position: static;
    width: auto;
    flex-direction: row;
    opacity: 1;
    pointer-events: auto;
+   bottom: var(--header-height);
   }
   
   .menu a {
+   font-size: 1.4rem;
    padding: 0 1rem;
   }
  
